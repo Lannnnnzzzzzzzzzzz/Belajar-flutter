@@ -9,27 +9,36 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: anime_app_upgrade
-
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'  # ganti sesuai project kamu
+          flutter-version: "3.22.2" # ganti sesuai versi Flutter project kamu
 
       - name: Install dependencies
         run: flutter pub get
+        working-directory: anime_app_upgrade
 
       - name: Build APK
         run: flutter build apk --release
+        working-directory: anime_app_upgrade
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Rename APK
+        run: mv anime_app_upgrade/build/app/outputs/flutter-apk/app-release.apk anime_app_upgrade/build/app/outputs/flutter-apk/BelajarFlutter.apk
+
+      - name: Upload artifact (opsional)
+        uses: actions/upload-artifact@v4
         with:
-          name: app-release-apk
-          path: anime_app_upgrade/build/app/outputs/flutter-apk/app-release.apk
+          name: BelajarFlutter-apk
+          path: anime_app_upgrade/build/app/outputs/flutter-apk/Anime-ku.apk
+          retention-days: 7
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: anime_app_upgrade/build/app/outputs/flutter-apk/BelajarFlutter.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
