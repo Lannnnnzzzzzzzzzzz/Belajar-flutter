@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: BelajarFlutter-apk
-          path: anime_app_upgrade/build/app/outputs/flutter-apk/Anime-ku.apk
+          path: anime_app_upgrade/build/app/outputs/flutter-apk/BelajarFlutter.apk
           retention-days: 7
 
       - name: Create GitHub Release
