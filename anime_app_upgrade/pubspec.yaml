@@ -1,0 +1,25 @@
+name: anime_app_upgrade
+description: Upgraded Lann Anime App - example Flutter project with player, favorites, history, dark mode.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.18.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0
+  cached_network_image: ^3.2.3
+  chewie: ^1.4.0
+  video_player: ^2.6.0
+  shared_preferences: ^2.1.1
+  provider: ^6.0.5
+  url_launcher: ^6.1.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
